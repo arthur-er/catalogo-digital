@@ -3,6 +3,7 @@
   "include": ["**/*"],
   "exclude": ["node_modules", "build"],
   "compilerOptions": {
+    "lib": ["ESNext"],
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,
