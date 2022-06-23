@@ -15,11 +15,38 @@
       "prettier"
     ],
     "plugins": [
-      "prettier"
+      "prettier",
+      "eslint-plugin-import-helpers"
     ],
     "rules": {
       "prettier/prettier": [
         "error"
+      ],
+      "import-helpers/order-imports": [
+        "warn",
+        {
+          "newlinesBetween": "always",
+          "groups": [
+            "module",
+            [
+              "/^App/",
+              "/^Config/",
+              "/^Contracts/",
+              "/^Database/"
+            ],
+            "/^@/(.*)/",
+            "/@ioc:(.*)/",
+            [
+              "parent",
+              "sibling",
+              "index"
+            ]
+          ],
+          "alphabetize": {
+            "order": "asc",
+            "ignoreCase": true
+          }
+        }
       ]
     }
   },
@@ -50,6 +77,7 @@
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-adonis": "^2.1.0",
+    "eslint-plugin-import-helpers": "^1.2.1",
     "eslint-plugin-prettier": "^4.0.0",
     "pino-pretty": "^8.1.0",
     "postcss": "^8.4.14",
