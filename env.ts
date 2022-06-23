@@ -23,4 +23,10 @@ export default Env.rules({
   SESSION_DRIVER: Env.schema.string(),
   DRIVE_DISK: Env.schema.enum(['local'] as const),
   NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
+  // Database
+  POSTGRES_HOST: Env.schema.string({ format: 'host' }),
+  POSTGRES_PORT: Env.schema.number(),
+  POSTGRES_USER: Env.schema.string(),
+  POSTGRES_PASSWORD: Env.schema.string.optional(),
+  POSTGRES_DB: Env.schema.string(),
 })
