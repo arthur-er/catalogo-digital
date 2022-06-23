@@ -14,18 +14,18 @@ const Button = styled('button', {
       xs: 'py-0 px-0',
     },
     text: {
-      primary: 'text-primary',
+      primary: 'text-primary-500',
       secondary: 'text-gray-900 disabled:text-gray-500',
       danger: 'text-red-500',
       white: 'text-white',
     },
     border: {
-      primary: 'border border-primary',
+      primary: 'border border-primary-500',
       secondary: 'border border-gray-300 hover:border-gray-900 disabled:hover:border-gray-300',
       danger: 'border border-red-500',
     },
     bg: {
-      primary: 'bg-primary hover:bg-primary-darker disabled:bg-opacity-50',
+      primary: 'bg-primary-500 hover:bg-primary-700 disabled:bg-opacity-50',
       secondary: 'bg-gray-500 hover:bg-gray-700 disabled:bg-opacity-50',
       danger: 'bg-red-500 hover:bg-red-700 disabled:bg-opacity-50',
       transparent: 'bg-transparent',
