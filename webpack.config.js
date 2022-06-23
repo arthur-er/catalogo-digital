@@ -1,5 +1,6 @@
 const { join } = require('path')
 const Encore = require('@symfony/webpack-encore')
+const path = require('path')
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Encore.setPublicPath('/assets')
 | entrypoints.
 |
 */
-Encore.addEntry('app', './resources/js/app.js')
+Encore.addEntry('app', './resources/scripts/main.tsx')
 
 /*
 |--------------------------------------------------------------------------
@@ -174,18 +175,19 @@ Encore.enablePostCssLoader()
 
 /*
 |--------------------------------------------------------------------------
-| Enable Vue loader
+| Enable React loader
 |--------------------------------------------------------------------------
 |
-| Uncomment the following lines of code to enable support for vue. Also make
-| sure to install the required dependencies.
-|
 */
-// Encore.enableVueLoader(() => {}, {
-//   version: 3,
-//   runtimeCompilerBuild: false,
-//   useJsx: false
-// })
+Encore.addAliases({
+  '@': path.resolve(__dirname, 'resources'),
+})
+Encore.enableTypeScriptLoader((tsconfig) => {
+  tsconfig.transpileOnly = true
+})
+Encore.configureBabel((babelConfig) => {
+  babelConfig.presets.push(['@babel/preset-react', { runtime: 'automatic' }])
+})
 
 /*
 |--------------------------------------------------------------------------
