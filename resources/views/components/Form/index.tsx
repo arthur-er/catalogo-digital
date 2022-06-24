@@ -68,7 +68,7 @@ export function Form<Schema extends z.ZodType<any, any>>({
       >
         {children}
 
-        {errors[FORM_ERROR] && (
+        {errors && errors[FORM_ERROR] && (
           <div className="rounded border border-red-500 bg-red-200 p-4 text-red-700" role="alert">
             {errors[FORM_ERROR]}
           </div>
