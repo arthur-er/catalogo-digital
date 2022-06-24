@@ -1,3 +1,4 @@
+import { Inertia } from '@inertiajs/inertia'
 import { z } from 'zod'
 
 import CheckboxInput from '@/views/components/CheckboxInput'
@@ -23,7 +24,7 @@ export default function LoginPage({}: LoginPageProps) {
         <Form
           schema={loginSchema}
           submitText="Entrar"
-          onSubmit={() => {}}
+          onSubmit={(data) => Inertia.post('/login', data)}
           className="mt-8 space-y-6"
         >
           <TextInput label="E-mail" name="email" />
