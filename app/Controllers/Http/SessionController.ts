@@ -14,4 +14,9 @@ export default class SessionController {
 
     return response.redirect().toRoute('dashboard')
   }
+
+  public async destroy({ auth, response }: HttpContextContract) {
+    await auth.logout()
+    return response.redirect().toRoute('auth.login')
+  }
 }
