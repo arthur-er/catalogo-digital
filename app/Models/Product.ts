@@ -1,4 +1,7 @@
+import { Dinero } from 'dinero.js'
 import { DateTime } from 'luxon'
+
+import dineroCast from 'App/Casts/dinero'
 
 import { attachment, AttachmentContract } from '@ioc:Adonis/Addons/AttachmentLite'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
@@ -14,6 +17,9 @@ export default class Product extends BaseModel {
 
   @column()
   public active: boolean
+
+  @column(dineroCast)
+  public price: Dinero<number>
 
   @column()
   public categoryId: number
