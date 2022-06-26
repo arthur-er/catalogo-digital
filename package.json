@@ -111,6 +111,7 @@
     "@headlessui/react": "^1.6.5",
     "@inertiajs/inertia": "^0.11.0",
     "@inertiajs/inertia-react": "^0.8.0",
+    "dinero.js": "^2.0.0-alpha.8",
     "luxon": "^2.4.0",
     "pg": "^8.7.3",
     "phc-argon2": "^1.1.3",
