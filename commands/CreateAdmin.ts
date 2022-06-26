@@ -27,6 +27,8 @@ export default class CreateAdmin extends BaseCommand {
     if (!this.password) {
       this.password = await this.prompt.secure('Senha')
       this.passwordConfirmation = await this.prompt.secure('Confirme sua senha')
+    } else {
+      this.passwordConfirmation = this.password
     }
     try {
       const { email, password } = await validator.validate({
