@@ -22,17 +22,20 @@ import Category from 'App/Models/Category'
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/dashboard', ({ inertia }) => inertia.render('dashboard', {}))
-  .as('dashboard')
-  .middleware('auth')
-
 Route.get('/login', 'SessionController.create')
 Route.post('/login', 'SessionController.store')
 Route.delete('/logout', 'SessionController.destroy')
 
+// Outside the group so it can be named just dashboard
 Route.get('/dashboard', ({ inertia }) =>
   inertia.render('dashboard', { categories: Category.query().preload('products') })
 )
   .as('dashboard')
   .middleware('auth')
 
+Route.group(() => {
+  Route.resource('categories', 'CategoriesController').except(['index', 'show'])
+})
+  .prefix('/dashboard')
+  .middleware('auth')
+  .as('dashboard')
