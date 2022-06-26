@@ -10,7 +10,7 @@ export default class extends BaseSchema {
         .integer('category_id')
         .unsigned()
         .references('id')
-        .inTable('users')
+        .inTable('categories')
         .onDelete('CASCADE')
         .notNullable()
       table.string('name').notNullable()
