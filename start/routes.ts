@@ -35,6 +35,7 @@ Route.get('/dashboard', ({ inertia }) =>
 
 Route.group(() => {
   Route.resource('categories', 'CategoriesController').except(['index', 'show'])
+  Route.shallowResource('categories.products', 'ProductsController').except(['index', 'show'])
 })
   .prefix('/dashboard')
   .middleware('auth')
