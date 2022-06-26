@@ -32,7 +32,8 @@
     "@adonisjs/lucid",
     "@adonisjs/auth",
     "@eidellev/inertia-adonisjs",
-    "@adonisjs/attachment-lite"
+    "@adonisjs/attachment-lite",
+    "@adonisjs/route-model-binding/build/providers/RmbProvider"
   ],
   "metaFiles": [
     {
