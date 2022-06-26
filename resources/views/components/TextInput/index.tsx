@@ -6,10 +6,18 @@ import { useFormContext } from 'react-hook-form'
 export interface TextInputProps extends PropsWithoutRef<JSX.IntrinsicElements['input']> {
   name: string
   label: string
+  prefix?: string
   tooltip?: string
 }
 
-const TextInput: React.FC<TextInputProps> = ({ name, tooltip, label, type = 'text', ...props }) => {
+const TextInput: React.FC<TextInputProps> = ({
+  name,
+  tooltip,
+  prefix,
+  label,
+  type = 'text',
+  ...props
+}) => {
   const {
     register,
     formState: { isSubmitting, errors },
@@ -25,19 +33,24 @@ const TextInput: React.FC<TextInputProps> = ({ name, tooltip, label, type = 'tex
       </label>
 
       <div className="relative mt-1">
+        {prefix && (
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span className="text-gray-500 sm:text-sm">{prefix}</span>
+          </div>
+        )}
         <input
           className={clsx(
             'block w-full rounded-md border-gray-300 focus:outline-none sm:text-sm',
             error !== undefined
               ? 'border-red-300 pr-10 text-red-900 placeholder-red-300  focus:border-red-500 focus:ring-red-500'
-              : 'focus:border-primary-500 focus:ring-primary-500'
+              : 'focus:border-primary-500 focus:ring-primary-500',
+            prefix && 'pl-10'
           )}
           id={name}
           type={type}
           aria-invalid={error !== undefined}
           aria-describedby={error ? `${name}-error` : tooltip ? `${name}-description` : undefined}
           disabled={isSubmitting}
-          {...register(name)}
           {...props}
           {...register(name, { valueAsNumber: type === 'number' })}
         />
