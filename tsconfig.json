@@ -22,7 +22,8 @@
       "@japa/preset-adonis/build/adonis-typings",
       "@adonisjs/lucid",
       "@adonisjs/auth",
-      "@eidellev/inertia-adonisjs"
+      "@eidellev/inertia-adonisjs",
+      "@adonisjs/attachment-lite"
     ]
   }
 }

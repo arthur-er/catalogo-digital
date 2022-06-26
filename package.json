@@ -98,6 +98,7 @@
     "zod": "^3.17.3"
   },
   "dependencies": {
+    "@adonisjs/attachment-lite": "^1.0.7",
     "@adonisjs/auth": "^8.2.1",
     "@adonisjs/core": "^5.8.0",
     "@adonisjs/lucid": "^18.1.0",
