@@ -13,35 +13,6 @@ const navigation = [
   {
     name: 'Dashboard',
     href: '/dashboard',
-    action: () => {
-      const { q } = JSON.parse(
-        '{"' +
-          decodeURI(window.location.search.substring(1))
-            .replace(/"/g, '\\"')
-            .replace(/&/g, '","')
-            .replace(/=/g, '":"') +
-          '"}'
-      )
-
-      const handleSearch = debounce(
-        (e: React.ChangeEvent<HTMLInputElement>) =>
-          Inertia.get('/dashboard', { q: e.target.value }, { preserveState: true }),
-        250
-      )
-
-      return (
-        <div className="flex items-center min-w-fit space-x-2">
-          <input
-            defaultValue={q}
-            className="block rounded-md border-gray-300 focus:outline-none sm:text-sm"
-            type="text"
-            placeholder="Pesquisar..."
-            onChange={handleSearch}
-          />
-          <Button>Criar categoria</Button>
-        </div>
-      )
-    },
   },
 ]
 
@@ -49,9 +20,11 @@ const userNavigation = [{ name: 'Sair', href: '/logout', method: Method.POST }]
 
 interface AdminLayoutProps {
   children?: any
+  title: string
+  action?: any
 }
 
-export default function AdminLayout({ children }: AdminLayoutProps) {
+export default function AdminLayout({ children, title, action }: AdminLayoutProps) {
   const {
     props: { user },
     url,
@@ -199,8 +172,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
       <header className="bg-white shadow">
         <div className="max-w-7xl flex justify-between mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">{currentItem.name}</h1>
-          {currentItem.action()}
+          <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
+          {typeof action === 'function' ? action() : action}
         </div>
       </header>
       <main>
