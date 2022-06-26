@@ -20,6 +20,10 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+Route.get('/dashboard', ({ inertia }) => inertia.render('dashboard', {}))
+  .as('dashboard')
+  .middleware('auth')
+
 Route.get('/login', 'SessionController.create')
 Route.post('/login', 'SessionController.store')
 Route.delete('/logout', 'SessionController.destroy')

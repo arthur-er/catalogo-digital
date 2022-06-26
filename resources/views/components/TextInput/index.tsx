@@ -30,7 +30,7 @@ const TextInput: React.FC<TextInputProps> = ({ name, tooltip, label, type = 'tex
             'block w-full rounded-md border-gray-300 focus:outline-none sm:text-sm',
             error !== undefined
               ? 'border-red-300 pr-10 text-red-900 placeholder-red-300  focus:border-red-500 focus:ring-red-500'
-              : 'focus:border-primary focus:ring-primary'
+              : 'focus:border-primary-500 focus:ring-primary-500'
           )}
           id={name}
           type={type}

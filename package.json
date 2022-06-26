@@ -106,6 +106,7 @@
     "@adonisjs/shield": "^7.0.11",
     "@adonisjs/view": "^6.1.0",
     "@eidellev/inertia-adonisjs": "^6.3.0",
+    "@headlessui/react": "^1.6.5",
     "@inertiajs/inertia": "^0.11.0",
     "@inertiajs/inertia-react": "^0.8.0",
     "luxon": "^2.4.0",
