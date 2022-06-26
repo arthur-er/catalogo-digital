@@ -3,11 +3,11 @@ import { Link } from '@inertiajs/inertia-react'
 
 import ProductCard from './ProductCard'
 
-interface CategoryProps {
+interface CategoryItemProps {
   category: any
 }
 
-export default function Category({ category }: CategoryProps) {
+export default function CategoryItem({ category }: CategoryItemProps) {
   return (
     <div className="flex flex-col space-y-4">
       <div className="py-6 border-b items-center flex justify-between border-gray-200">

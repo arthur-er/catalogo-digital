@@ -1,4 +1,4 @@
-import Category from '@/views/components/Category'
+import CategoryItem from '@/views/components/CategoryItem'
 import AdminLayout from '@/views/layouts/admin'
 
 interface DashboardPageProps {}
@@ -6,7 +6,7 @@ interface DashboardPageProps {}
 export default function DashboardPage({}: DashboardPageProps) {
   return (
     <AdminLayout>
-      <Category category={{ name: 'Teste', products: [{ id: 1 }] }} />
+      <CategoryItem category={{ name: 'Teste', products: [{ id: 1 }] }} />
     </AdminLayout>
   )
 }
