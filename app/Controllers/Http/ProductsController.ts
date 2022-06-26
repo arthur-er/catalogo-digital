@@ -1,5 +1,6 @@
 import { bind } from '@adonisjs/route-model-binding'
 
+import dineroFromFloat from 'App/Helpers/dineroFromFloat'
 import Category from 'App/Models/Category'
 import Product from 'App/Models/Product'
 import CreateProductValidator from 'App/Validators/CreateProductValidator'
@@ -16,12 +17,15 @@ export default class ProductsController {
 
   @bind()
   public async store({ request, response, session }: HttpContextContract, category: Category) {
-    const { name, image } = await request.validate(CreateProductValidator)
+    const { name, image, price } = await request.validate(CreateProductValidator)
 
     try {
-      await category
-        .related('products')
-        .create({ name, image: Attachment.fromFile(image), active: true })
+      await category.related('products').create({
+        name,
+        image: Attachment.fromFile(image),
+        active: true,
+        price: dineroFromFloat({ amount: price }),
+      })
       session.flash('notifications', {
         title: 'Produto criado com sucesso',
       })
@@ -41,18 +45,24 @@ export default class ProductsController {
 
   @bind()
   public async update({ session, request, response }: HttpContextContract, product: Product) {
-    const { name, image } = await request.validate(new UpdateProductValidator(product))
+    const { name, image, price, active } = await request.validate(
+      new UpdateProductValidator(product)
+    )
 
     try {
       await product
-        .merge({ name, image: image ? Attachment.fromFile(image) : product.image })
+        .merge({
+          name,
+          image: image ? Attachment.fromFile(image) : product.image,
+          price: dineroFromFloat({ amount: price }),
+          active,
+        })
         .save()
       session.flash('notifications', {
         title: 'Produto alterado com sucesso',
       })
       return response.redirect().toRoute('dashboard')
     } catch (error) {
-      console.log(error)
       session.flash('notifications', {
         title: 'Erro ao alterar produto',
       })

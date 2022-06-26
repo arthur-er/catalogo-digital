@@ -24,5 +24,7 @@ export default class UpdateProductValidator {
       }),
     ]),
     image: schema.file.optional({ size: '2mb', extnames: ['jpg', 'png'] }),
+    price: schema.number([rules.greaterThan(0)]),
+    active: schema.boolean(),
   })
 }

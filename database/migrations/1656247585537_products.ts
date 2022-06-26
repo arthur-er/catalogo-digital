@@ -15,6 +15,7 @@ export default class extends BaseSchema {
         .notNullable()
       table.string('name').notNullable()
       table.json('image').notNullable()
+      table.json('price').notNullable()
       table.boolean('active')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })

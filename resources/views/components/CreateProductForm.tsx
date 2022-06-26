@@ -17,6 +17,7 @@ const createProductSchema = z.object({
     .instanceof(File)
     .refine((file) => file.type.startsWith('image/'), 'O arquivo não é uma imagem')
     .refine((file) => file.size < TWO_MB, 'A imagem é muito grande'),
+  price: z.number().gt(0, 'O preço deve ser maior que 0'),
 })
 
 export default function CreateProductForm({ category }: CreateProductFormProps) {
@@ -29,7 +30,7 @@ export default function CreateProductForm({ category }: CreateProductFormProps) 
       }
     >
       <TextInput name="name" label="Nome do produto" />
-      <TextInput name="price" label="Preço" />
+      <TextInput name="price" type="number" label="Preço" />
       <FileInput accept="image/*" name="image" label="Imagem" />
     </Form>
   )
