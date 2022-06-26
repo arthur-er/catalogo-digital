@@ -8,9 +8,9 @@ export default class SessionController {
   }
 
   public async store({ auth, request, response }: HttpContextContract) {
-    const { email, password } = await request.validate(LoginValidator)
+    const { email, password, remember_me: rememberMe } = await request.validate(LoginValidator)
 
-    await auth.attempt(email, password)
+    await auth.use('web').attempt(email, password, rememberMe)
 
     return response.redirect().toRoute('dashboard')
   }

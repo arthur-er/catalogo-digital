@@ -10,6 +10,7 @@ interface LoginPageProps {}
 const loginSchema = z.object({
   email: z.string().min(1, 'Insira seu email').email('Insira um e-mail válido'),
   password: z.string().min(1, 'Insira sua senha'),
+  remember_me: z.boolean().optional().default(false),
 })
 
 export default function LoginPage({}: LoginPageProps) {
@@ -31,7 +32,7 @@ export default function LoginPage({}: LoginPageProps) {
           <TextInput label="Senha" type="password" name="password" />
 
           <div className="flex items-center justify-between">
-            <CheckboxInput label="Manter conectado?" name="remember-me" />
+            <CheckboxInput label="Manter conectado?" name="remember_me" />
 
             <div className="text-sm">
               <a href="#" className="font-medium text-primary-600 hover:text-primary-500">
