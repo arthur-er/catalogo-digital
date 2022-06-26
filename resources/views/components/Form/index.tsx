@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { usePage } from '@inertiajs/inertia-react'
-import { PropsWithoutRef } from 'react'
+import { PropsWithoutRef, useEffect } from 'react'
 import { FormProvider, useForm, UseFormProps } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { z } from 'zod'
@@ -23,19 +23,6 @@ interface OnSubmitResult {
 
 export const FORM_ERROR = 'FORM_ERROR'
 
-const setErrors = (ctx, errors) => {
-  if (!errors) return
-
-  for (const [key, value] of Object.entries(errors)) {
-    if (key === FORM_ERROR) continue
-
-    ctx.setError(key as any, {
-      type: 'submit',
-      message: value,
-    })
-  }
-}
-
 export function Form<Schema extends z.ZodType<any, any>>({
   schema,
   initialValues,
@@ -47,23 +34,30 @@ export function Form<Schema extends z.ZodType<any, any>>({
 }: FormProps<Schema>) {
   const ctx = useForm({
     mode: 'all',
-    resolver: schema && zodResolver(schema),
+    resolver: schema ? zodResolver(schema) : undefined,
     defaultValues: initialValues,
   })
 
   const { errors } = usePage().props
 
-  setErrors(ctx, errors)
+  useEffect(() => {
+    if (errors) {
+      for (const [key, value] of Object.entries(errors)) {
+        if (key === FORM_ERROR) continue
 
-  const handleSubmit = ctx.handleSubmit(async (values) => {
-    setErrors(ctx, await onSubmit(values))
-  })
+        ctx.setError(key as any, {
+          type: 'submit',
+          message: value,
+        })
+      }
+    }
+  }, [errors])
 
   return (
     <FormProvider {...ctx}>
       <form
         className={twMerge('flex w-full flex-col space-y-4', className)}
-        onSubmit={handleSubmit}
+        onSubmit={ctx.handleSubmit(onSubmit)}
         {...props}
       >
         {children}
