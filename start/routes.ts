@@ -18,6 +18,8 @@
 |
 */
 
+import Category from 'App/Models/Category'
+
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/dashboard', ({ inertia }) => inertia.render('dashboard', {}))
@@ -27,3 +29,10 @@ Route.get('/dashboard', ({ inertia }) => inertia.render('dashboard', {}))
 Route.get('/login', 'SessionController.create')
 Route.post('/login', 'SessionController.store')
 Route.delete('/logout', 'SessionController.destroy')
+
+Route.get('/dashboard', ({ inertia }) =>
+  inertia.render('dashboard', { categories: Category.query().preload('products') })
+)
+  .as('dashboard')
+  .middleware('auth')
+
