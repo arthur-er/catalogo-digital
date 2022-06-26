@@ -39,6 +39,7 @@ const TextInput: React.FC<TextInputProps> = ({ name, tooltip, label, type = 'tex
           disabled={isSubmitting}
           {...register(name)}
           {...props}
+          {...register(name, { valueAsNumber: type === 'number' })}
         />
         {error && (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
