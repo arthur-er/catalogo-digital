@@ -21,7 +21,7 @@ export default class Product extends BaseModel {
   @belongsTo(() => Category)
   public category: BelongsTo<typeof Category>
 
-  @attachment()
+  @attachment({ preComputeUrl: true })
   public image: AttachmentContract
 
   @column.dateTime({ autoCreate: true })
