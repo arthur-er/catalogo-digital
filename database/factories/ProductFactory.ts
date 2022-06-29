@@ -1,3 +1,4 @@
+import dineroFromFloat from 'App/Helpers/dineroFromFloat'
 import Product from 'App/Models/Product'
 
 import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
@@ -19,6 +20,7 @@ export default Factory.define(Product, async ({ faker }) => {
   return {
     name: faker.word.noun(),
     image,
+    price: dineroFromFloat({ amount: Number(faker.random.numeric(3)) }),
     active: true,
   }
 })
