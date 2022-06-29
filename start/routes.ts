@@ -21,6 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'HomePageController')
+Route.get('/cart', 'CartController')
 
 Route.get('/login', 'SessionController.create')
 Route.post('/login', 'SessionController.store')
