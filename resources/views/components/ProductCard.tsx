@@ -2,12 +2,14 @@ import { Link, usePage } from '@inertiajs/inertia-react'
 import clsx from 'clsx'
 import { dinero } from 'dinero.js'
 
+import { Product } from '@/scripts/models'
 import toFormat from '@/scripts/toFormat'
+import useCart from '@/scripts/useCart'
 
 import Button from './Button'
 
 interface ProductCardProps {
-  product: any
+  product: Product
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
@@ -16,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     url,
   } = usePage()
   const isDashboard = url.startsWith('dashboard')
-
+  const { addProduct } = useCart()
   const formattedPrice = toFormat(dinero(product.price))
 
   return (
@@ -60,7 +62,13 @@ export default function ProductCard({ product }: ProductCardProps) {
             </Link>
           </div>
         ) : (
-          <Button size="xs" text="primary" variant="text" bg="transparent">
+          <Button
+            onClick={() => addProduct(product)}
+            size="xs"
+            text="primary"
+            variant="text"
+            bg="transparent"
+          >
             Adicionar ao carrinho
           </Button>
         )}
