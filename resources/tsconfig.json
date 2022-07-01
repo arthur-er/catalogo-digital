@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
+    "lib": ["DOM", "ESNext"],
+    "strict": true,
     "jsx": "react-jsx",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
   }
 }

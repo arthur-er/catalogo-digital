@@ -13,9 +13,9 @@
 |
 */
 
-import Logger from '@ioc:Adonis/Core/Logger'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
+import Logger from '@ioc:Adonis/Core/Logger'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
   protected statusPages = {
@@ -38,6 +38,17 @@ export default class ExceptionHandler extends HttpExceptionHandler {
     }
 
     return super.makeHtmlResponse(error, ctx)
+  }
+
+  public async handle(error: any, ctx: HttpContextContract): Promise<any> {
+    const { session, response } = ctx
+
+    if (['E_INVALID_AUTH_PASSWORD', 'E_INVALID_AUTH_UID'].includes(error.code)) {
+      session.flash('errors', { FORM_ERROR: error.message })
+      return response.redirect('/login')
+    }
+
+    return super.handle(error, ctx)
   }
 
   constructor() {
