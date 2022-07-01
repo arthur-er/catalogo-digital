@@ -1,6 +1,6 @@
 import { ShoppingCartIcon } from '@heroicons/react/solid'
 import { Inertia } from '@inertiajs/inertia'
-import { Link } from '@inertiajs/inertia-react'
+import { Link, usePage } from '@inertiajs/inertia-react'
 
 import config from '@/scripts/config'
 import debounce from '@/scripts/debounce'
@@ -15,6 +15,8 @@ export default function Navbar({}: NavbarProps) {
     250
   )
 
+  const { url } = usePage()
+
   return (
     <header className="container px-2 justify-between relative w-full flex-col md:flex-row text-primary max-w-screen-lg mx-auto py-4 flex items-center md:space-x-2">
       <div className="space-x-2 flex items-center">
@@ -26,13 +28,15 @@ export default function Navbar({}: NavbarProps) {
         </Link>
       </div>
 
-      <input
-        defaultValue={query || undefined}
-        className="block rounded-lg w-full mt-6 md:mt-0 md:w-1/2 border-gray-300 focus:outline-none sm:text-sm"
-        type="text"
-        placeholder="Pesquisar..."
-        onChange={handleSearch}
-      />
+      {url === '/' ? (
+        <input
+          defaultValue={query || undefined}
+          className="block rounded-lg w-full mt-6 md:mt-0 md:w-1/2 border-gray-300 focus:outline-none sm:text-sm"
+          type="text"
+          placeholder="Pesquisar..."
+          onChange={handleSearch}
+        />
+      ) : undefined}
     </header>
   )
 }
