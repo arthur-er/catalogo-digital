@@ -20,7 +20,7 @@ export default function SearchCategory({}: SearchCategoryProps) {
     <div className="flex items-center min-w-fit space-x-2">
       <input
         defaultValue={query}
-        className="block rounded-md border-gray-300 focus:outline-none sm:text-sm"
+        className="block rounded-md border-gray-300 focus:border-primary-500 focus:ring-primary-500 focus:outline-none sm:text-sm"
         type="text"
         placeholder="Pesquisar..."
         onChange={handleSearch}

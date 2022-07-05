@@ -31,7 +31,7 @@ export default function Navbar({}: NavbarProps) {
       {url === '/' ? (
         <input
           defaultValue={query || undefined}
-          className="block rounded-lg w-full mt-6 md:mt-0 md:w-1/2 border-gray-300 focus:outline-none sm:text-sm"
+          className="block focus:border-primary-500 focus:ring-primary-500 rounded-lg w-full mt-6 md:mt-0 md:w-1/2 border-gray-300 focus:outline-none sm:text-sm"
           type="text"
           placeholder="Pesquisar..."
           onChange={handleSearch}
