@@ -1,14 +1,14 @@
 import config from '@/scripts/config'
 
 const links = [
-  { name: 'Localização', href: '#' },
-  { name: 'Contato', href: '#' },
+  { name: 'Localização', href: config.localization },
+  { name: 'Contato', href: `tel:${config.phoneNumber}` },
 ]
 
 const socialNetworks = [
   {
     name: 'Facebook',
-    href: '#',
+    href: config.facebookLink,
     icon: (props: any) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path
@@ -21,7 +21,7 @@ const socialNetworks = [
   },
   {
     name: 'Instagram',
-    href: '#',
+    href: config.instagramLink,
     icon: (props: any) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path
