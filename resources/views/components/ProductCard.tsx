@@ -15,9 +15,9 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const {
     props: { user },
-    url,
+    component,
   } = usePage()
-  const isDashboard = url.startsWith('dashboard')
+  const isDashboard = component.startsWith('dashboard')
   const { addProduct } = useCart()
   const formattedPrice = toFormat(dinero(product.price))
 

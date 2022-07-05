@@ -13,9 +13,9 @@ interface CategoryItemProps {
 export default function CategoryItem({ category }: CategoryItemProps) {
   const {
     props: { user },
-    url,
+    component,
   } = usePage()
-  const isDashboard = url.startsWith('dashboard')
+  const isDashboard = component.startsWith('dashboard')
   return (
     <div className="flex flex-col space-y-4">
       <div className="py-6 border-b items-center flex justify-between border-gray-200">
