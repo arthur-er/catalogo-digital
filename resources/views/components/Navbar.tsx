@@ -19,7 +19,7 @@ export default function Navbar({}: NavbarProps) {
 
   return (
     <header className="container px-2 justify-between relative w-full flex-col md:flex-row text-primary max-w-screen-lg mx-auto py-4 flex items-center md:space-x-2">
-      <div className="space-x-2 flex items-center">
+      <div className="space-x-2 flex items-center text-primary-500">
         <Link href="/cart">
           <ShoppingCartIcon className="w-5 h-5" />
         </Link>
